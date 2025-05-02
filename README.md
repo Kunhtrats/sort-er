@@ -27,9 +27,9 @@
 
 ## 📋 Requirements
 
-- Windows 7 or later
+- Windows 10 or later
 - .NET Framework 4.5+
-- 50MB free disk space
+- 170MB free disk space
 
 ## 📥 Installation
 
