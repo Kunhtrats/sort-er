@@ -31,7 +31,7 @@
 
             System.Windows.Forms.Label titleLabel = new System.Windows.Forms.Label
             {
-                Text = "srt-er",
+                Text = "sort-er",
                 Font = new System.Drawing.Font("Segoe UI", 18, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.FromArgb(44, 62, 80),
                 Dock = System.Windows.Forms.DockStyle.Top,
