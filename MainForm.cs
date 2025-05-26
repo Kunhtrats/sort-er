@@ -58,7 +58,6 @@ namespace Sort_er
                 return;
             }
 
-            // Reiniciar estadísticas
             totalFiles = 0;
             processedFiles = 0;
             createdFolders = 0;
@@ -67,13 +66,10 @@ namespace Sort_er
             createdFoldersLabel.Text = "0";
             progressBar.Value = 0;
 
-            // Desactivar controles durante el proceso
             EnableControls(false);
 
-            // Ejecutar organización en segundo plano
             await Task.Run(() => OrganizeFiles());
 
-            // Reactivar controles
             EnableControls(true);
         }
 
@@ -144,11 +140,9 @@ namespace Sort_er
                 UpdateStatus("Analyzing files...");
                 Log($"Initiating organization in: {selectedDirectory}");
 
-                // Diccionario para guardar los archivos encontrados por extensión
                 Dictionary<string, List<string>> filesByExtension = new Dictionary<string, List<string>>();
                 List<string> allFiles = new List<string>();
 
-                // Recorrer archivos
                 if (includeSubdirectories)
                 {
                     allFiles.AddRange(Directory.GetFiles(selectedDirectory, "*.*", SearchOption.AllDirectories));
@@ -158,16 +152,13 @@ namespace Sort_er
                     allFiles.AddRange(Directory.GetFiles(selectedDirectory));
                 }
 
-                // Excluir el propio ejecutable
                 string exePath = Application.ExecutablePath;
                 allFiles.RemoveAll(file => file.Equals(exePath, StringComparison.OrdinalIgnoreCase));
 
-                // Actualizar total de archivos
                 totalFiles = allFiles.Count;
                 UpdateStats();
                 Log($"Found {totalFiles} files to process");
 
-                // Clasificar archivos por extensión
                 foreach (string filePath in allFiles)
                 {
                     string extension = Path.GetExtension(filePath).TrimStart('.');
@@ -177,7 +168,6 @@ namespace Sort_er
                     else
                         extension = extension.ToLower();
 
-                    // Si el archivo no tiene extensión, usar "SIN_EXTENSION"
                     if (string.IsNullOrEmpty(extension))
                         extension = useUppercase ? "NO_EXTENSION" : "NO_extension";
 
@@ -187,7 +177,6 @@ namespace Sort_er
                     filesByExtension[extension].Add(filePath);
                 }
 
-                // Crear carpetas y mover archivos
                 processedFiles = 0;
                 createdFolders = 0;
 
@@ -197,7 +186,6 @@ namespace Sort_er
                     List<string> fileList = kvp.Value;
                     string folderPath = Path.Combine(selectedDirectory, extension);
 
-                    // Crear la carpeta si no existe
                     if (!Directory.Exists(folderPath))
                     {
                         Directory.CreateDirectory(folderPath);
@@ -206,13 +194,11 @@ namespace Sort_er
                         Log($"Folder created: {extension}");
                     }
 
-                    // Mover archivos a la carpeta correspondiente
                     foreach (string filePath in fileList)
                     {
                         string fileName = Path.GetFileName(filePath);
                         string destination = Path.Combine(folderPath, fileName);
 
-                        // Si el archivo de destino ya existe, añadir un número
                         if (File.Exists(destination))
                         {
                             string baseName = Path.GetFileNameWithoutExtension(fileName);
@@ -231,17 +217,14 @@ namespace Sort_er
                             processedFiles++;
                             UpdateStats();
 
-                            // Actualizar barra de progreso
                             int progress = (int)((double)processedFiles / totalFiles * 100);
                             UpdateProgress(progress);
 
-                            // Actualizar cada 10 archivos
                             if (processedFiles % 10 == 0 || processedFiles == totalFiles)
                             {
                                 UpdateStatus($"Processing... {processedFiles}/{totalFiles}");
                             }
 
-                            // Registrar cada 20 archivos
                             if (processedFiles % 20 == 0 || processedFiles == 1 || processedFiles == totalFiles)
                             {
                                 Log($"Processed {processedFiles}/{totalFiles} files");
@@ -254,7 +237,6 @@ namespace Sort_er
                     }
                 }
 
-                // Operación completada
                 UpdateStatus("Organization completed!");
                 Log("File organization successfully completed");
                 MessageBox.Show($"{processedFiles} files have been organized into {createdFolders} folders.", "Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
