@@ -65,9 +65,17 @@ git clone https://github.com/kunhtrats/sort-er.git
 # Build and run
 ```
 
-## 📜 License
+## 📜 License & Usage
 
-Sort-er is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. 
+[LICENSE](LICENSE) 
+However, **you MUST keep proper attribution to the original author (Miguel Alarcón)**.
+
+> 🔒 **DO NOT claim this work as your own.**  
+> Fork it, learn from it, use it — but **give credit where it’s due**.
+
+If you use this code in your own projects, please include a link back to this repository or mention the author's name clearly.
+
 
 ## 🙏 Acknowledgments
 
