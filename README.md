@@ -68,7 +68,7 @@ git clone https://github.com/kunhtrats/sort-er.git
 ## 📜 License & Usage
 
 This project is licensed under the MIT License. 
-[LICENSE](LICENSE) 
+[LICENSE.MD](LICENSE) 
 However, **you MUST keep proper attribution to the original author (Miguel Alarcón)**.
 
 > 🔒 **DO NOT claim this work as your own.**  
