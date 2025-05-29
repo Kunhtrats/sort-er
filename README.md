@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://github.com/yourusername/sort-er)
-[![Version](https://img.shields.io/badge/version-0.1.0-brightgreen.svg)](https://github.com/yourusername/sort-er/releases)
+[![Version](https://img.shields.io/badge/version-0.1.1-brightgreen.svg)](https://github.com/yourusername/sort-er/releases)
 
 ## 🚀 Overview
 
